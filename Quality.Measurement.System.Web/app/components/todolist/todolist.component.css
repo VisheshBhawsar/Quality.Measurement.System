@@ -1,0 +1,95 @@
+﻿.leftcontainer {
+    flex: 1;
+    margin-right: 8px;
+    overflow: auto;
+}
+
+.centercontainer {
+    flex: 2;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+    .centercontainer > .list-group {
+        flex: 1;
+    }
+
+.showhidetasks {
+    margin: 4px;
+    flex-shrink: 0;
+}
+
+.checkicon {
+    font-size: 1.6em;
+    cursor: pointer;
+}
+
+.actionenable {
+    font-size: 1.6em;
+    cursor: pointer;
+}
+
+.actiondisable {
+    font-size: 1.6em;
+    color: #ddd;
+}
+
+.addcontent {
+    display: flex;
+}
+
+    .addcontent input {
+        margin-left: 8px;
+    }
+
+.taskwrapper {
+    display: flex;
+    align-content: center;
+}
+
+    .taskwrapper > div {
+        display: flex;
+        align-items: center;
+        margin-left: 4px;
+    }
+
+    .taskwrapper > .actionbtn {
+        margin-left: 8px;
+        visibility: hidden;
+        font-size: 1.4em;
+        cursor: pointer;
+    }
+
+    .taskwrapper:hover > .actionbtn {
+        visibility: visible;
+    }
+
+.addcontentlist {
+    display: flex;
+    margin: 8px;
+}
+
+    .addcontentlist input {
+        margin-left: 8px;
+    }
+
+.listwrapper {
+    display: flex;
+    flex: 1;
+}
+
+.listitemwrapper {
+    display: flex;
+    flex: 1;
+    align-content: center;
+}
+
+    .listitemwrapper .actionbtn {
+        margin-left: 8px;
+        visibility: hidden;
+    }
+
+    .listitemwrapper:hover .actionbtn {
+        visibility: visible;
+    }

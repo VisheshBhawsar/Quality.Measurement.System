@@ -1,0 +1,40 @@
+﻿<div *ngIf="haserror" class="alert alert-danger alert-dismissible" role="alert">
+    <button (click)="hideerror()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div [innerHTML]="errormsg"></div>
+</div>
+<form *ngIf="!haserror">
+    <div class="leftcontainer borderedboxlight">
+        <div class="addcontentlist">
+            <i class="glyphicon glyphicon-plus" (click)="addlist(newlistctrl)" [ngClass]="{'actionenable' : newlistctrl.valid, 'actiondisable' : !newlistctrl.valid}"></i>
+            <input type="text" [(ngModel)]="newlist" class="form-control" ngControl="newlistctrl" required #newlistctrl="ngForm" />
+        </div>
+        <div class="list-group" *ngIf="todolist">
+            <a href="#" (click)="SelectedList=listitem" class="list-group-item listwrapper" [class.active]="SelectedList && listitem.Id==SelectedList.Id" *ngFor="let listitem of todolist">
+                <div class="listitemwrapper">
+                    <div>{{listitem.Name}}</div>
+                    <div class="actionbtn text-danger" (click)="removelist(listitem)"><i class="glyphicon glyphicon-remove"></i></div>
+                </div>
+                <span class="badge">{{listitem.CountEnded}}/{{listitem.Count}}</span>
+            </a>
+        </div>
+    </div>
+    <div class="centercontainer borderedboxlight">
+        <ul class="list-group" *ngIf="todolist">
+            <li class="list-group-item addcontent">
+                <i class="glyphicon glyphicon-plus" (click)="addtask(newtaskctrl)" [ngClass]="{'actionenable' : newtaskctrl.valid, 'actiondisable' : !newtaskctrl.valid}"></i>
+                <input type="text" [(ngModel)]="newtask" class="form-control" ngControl="newtaskctrl" required #newtaskctrl="ngForm" />
+            </li>
+            <li class="list-group-item" *ngFor="let task of selectedtasks">
+                <div class="taskwrapper">
+                    <i class="checkicon glyphicon" [ngClass]="{'glyphicon-check' : task.Ended, 'glyphicon-unchecked' : !task.Ended}" (click)="checktask(task)"></i>
+                    <div>
+                        {{task.Name}}
+                    </div>
+                    <div class="actionbtn text-danger" (click)="removetask(task)"><i class="glyphicon glyphicon-remove"></i></div>
+                </div>
+            </li>
+        </ul>
+        <button *ngIf="!showendedtask" (click)="showendedtask=true" type="button" class="btn btn-default showhidetasks">Show ended tasks</button>
+        <button *ngIf="showendedtask" (click)="showendedtask=false" type="button" class="btn btn-default showhidetasks">Hide ended tasks</button>
+    </div>
+</form>

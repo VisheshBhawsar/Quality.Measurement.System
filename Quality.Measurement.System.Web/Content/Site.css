@@ -1,0 +1,62 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f1f1f1;
+}
+
+header {
+    display: flex;
+    background-color: #fff;
+    border-bottom: 1px solid #e7eaec;
+    padding: 8px;
+    font-size: 20px;
+}
+
+    header > div {
+        flex: 1;
+    }
+
+    header .title {
+        text-align: center;
+    }
+
+main {
+    flex: 1;
+    padding: 15px 20px 15px 15px;
+    margin-bottom: 0px;
+    overflow-y: auto;
+    display: flex;
+}
+
+footer {
+    background-color: #000;
+    display: flex;
+    padding: 8px;
+    border-top: 1px solid #e7eaec;
+    align-items: center;
+    color: #337ab7;
+}
+
+.borderedboxlight {
+    background-color: #fff;
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+}
+
+.waitloading {
+    font-size: 26px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.todolistcontent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+    .todolistcontent form {
+        display: flex;
+        flex: 1;
+    }

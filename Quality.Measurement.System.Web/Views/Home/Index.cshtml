@@ -1,0 +1,24 @@
+﻿@section title{
+
+    <user></user>
+Angular2 Version
+
+}
+
+@section scripts{
+    @Html.Partial("DefineAngular")
+    <script>
+        System.import('app/boottodolist');
+
+    </script>
+}
+
+
+
+<todolist class="todolistcontent">
+    <div class="waitloading">
+        loading...
+    </div>
+</todolist>
+
+
