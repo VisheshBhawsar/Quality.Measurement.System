@@ -16,6 +16,7 @@ namespace Quality.Measurement.System.BusinessLogic
         /// </summary>
         private readonly IUserRepository _userRepository;
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UserLogic"/> class.
         /// </summary>
