@@ -11,7 +11,7 @@ using Quality.Measurement.System.Shared.Helpers.Constants;
 
 namespace Quality.Measurement.System.Data.Repository
 {
-    public class UserRepository : BaseRepository, IUserRepository
+    public class UserRepository : BaseRepository, IRepository<User>
     {
         /// <summary>
         /// Gets the specified command parameter.
@@ -20,6 +20,25 @@ namespace Quality.Measurement.System.Data.Repository
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
         public async Task<User> Get(CommandParameter commandParameter)
+        {
+            InitializeDbObjects(commandParameter);
+            using (DbDataReader dataReader = await ExecuteReaderAsync())
+            {
+                if (dataReader.HasRows)
+                {
+                    return MapTableToUserObject(dataReader);
+                }
+            }
+            throw new Exception();
+        }
+
+        /// <summary>
+        /// Posts the specified command parameter.
+        /// </summary>
+        /// <param name="commandParameter">The command parameter.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<User> Post(CommandParameter commandParameter)
         {
             InitializeDbObjects(commandParameter);
             using (DbDataReader dataReader = await ExecuteReaderAsync())
@@ -51,6 +70,8 @@ namespace Quality.Measurement.System.Data.Repository
                     {
                         UserId = row.Field<int>(DatabaseFieldConstants.UserId),
                         UserName = row.Field<string>(DatabaseFieldConstants.UserName),
+                        FirstName = row.Field<string>(DatabaseFieldConstants.FirstName),
+                        LastName = row.Field<string>(DatabaseFieldConstants.LastName)
                     }).ToList();
                 return userList.First();
             }

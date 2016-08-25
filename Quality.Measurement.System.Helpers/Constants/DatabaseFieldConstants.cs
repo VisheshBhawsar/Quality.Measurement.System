@@ -12,9 +12,20 @@ namespace Quality.Measurement.System.Shared.Helpers.Constants
         /// </summary>
         public static readonly string UserId = "UserId";
 
+
         /// <summary>
         /// The user name
         /// </summary>
         public static readonly string UserName = "UserName";
+
+        /// <summary>
+        /// The first name
+        /// </summary>
+        public static readonly string FirstName = "FirstName";
+
+        /// <summary>
+        /// The last name
+        /// </summary>
+        public static readonly string LastName = "LastName";
     }
 }

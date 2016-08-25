@@ -42,7 +42,7 @@ namespace Quality.Measurement.System.Unit.Test
         [TestMethod]
         public void UserLogicConstructorTest1()
         {
-            IUserRepository userRepository = new UserRepository();
+            IRepository<User> userRepository = new UserRepository();
             UserLogic target = new UserLogic(userRepository);
             Assert.IsInstanceOfType(target, typeof(UserLogic));
         }
@@ -53,7 +53,7 @@ namespace Quality.Measurement.System.Unit.Test
         [TestMethod]
         public void UserLogicConstructorTest2()
         {
-            var mockUserRepository = new Mock<IUserRepository>();
+            var mockUserRepository = new Mock<IRepository<User>>();
             UserLogic target = new UserLogic(mockUserRepository.Object);
             Assert.IsInstanceOfType(target, typeof(UserLogic));
         }
@@ -69,7 +69,7 @@ namespace Quality.Measurement.System.Unit.Test
             long userId = 1;
             Task<User> result = Task<User>.Factory.StartNew(() => expectedValue);
             // creating mock object of IUserRepository
-            var mockGet = new Mock<IUserRepository>();
+            var mockGet = new Mock<IRepository<User>>();
             // setting the return value from Mock object on function call Get
             mockGet.Setup(
                 f =>

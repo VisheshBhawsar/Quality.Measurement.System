@@ -8,33 +8,24 @@ namespace Quality.Measurement.System.Api.Services
 {
     public class UserController : ApiController
     {
-        private readonly IUserLogic _userLogic;
+        private readonly ILogic<User> _userLogic;
 
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UserController"/> class.
-        /// </summary>
         public UserController()
         {
-            _userLogic = Factory.CreateInstance<IUserLogic>();
+            _userLogic = Factory.CreateInstance<ILogic<User>>();
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserController"/> class.
         /// </summary>
         /// <param name="userRepository">The user repository.</param>
-        public UserController(IUserLogic userRepository)
+        public UserController(ILogic<User> userRepository)
         {
             if (userRepository != null)
             {
                 _userLogic = userRepository;
             }
         }
-
-
-
 
         /// <summary>
         /// Gets the specified identifier.
@@ -56,12 +47,8 @@ namespace Quality.Measurement.System.Api.Services
         [HttpPost]
         public async Task<IHttpActionResult> Post(User userInfo)
         {
-            User userDetail = await _userLogic.Get(userInfo.UserId);
-            return Ok(new User()
-            {
-                UserName = "Hello Vishesh",
-                UserId = 2
-            });
+            User userDetails = await _userLogic.Post(userInfo);
+            return Ok(userDetails);
         }
     }
 }

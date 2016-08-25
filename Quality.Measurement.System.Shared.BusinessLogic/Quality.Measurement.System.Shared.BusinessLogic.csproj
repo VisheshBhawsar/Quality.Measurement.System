@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IUserLogic.cs" />
+    <Compile Include="ILogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Quality.Measurement.System.Helpers\Quality.Measurement.System.Shared.Helpers.csproj">
