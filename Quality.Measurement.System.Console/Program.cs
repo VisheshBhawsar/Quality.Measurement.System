@@ -24,11 +24,45 @@ namespace Quality.Measurement.System.ConsoleApp
 
         static  void RunAsync()
         {
+            RunRoleTest();
+            RunUserTest();
+        }
+
+        /// <summary>
+        /// Runs the role test.
+        /// </summary>
+        private static void RunRoleTest()
+        {
+            Role roleObj = GetApiResponse<Role>("Role", "Get", 1);
+            if (roleObj != null)
+            {
+                Console.WriteLine("RoleName From RoleId: {0}", roleObj.RoleName);
+            }
+
+            roleObj = new Role()
+            {
+                RoleName = "Admin",
+                RoleId = 2
+            };
+
+            roleObj = PostApiResponse<Role>("Role", "Post", roleObj);
+            if (roleObj != null)
+            {
+                Console.WriteLine("RoleName From RoleId: {0}", roleObj.RoleName);
+            }
+        }
+
+        /// <summary>
+        /// Runs the user test.
+        /// </summary>
+        private static void RunUserTest()
+        {
             User userObj = GetApiResponse<User>("User", "Get", 1);
             if (userObj != null)
             {
                 Console.WriteLine("UserName From UserId: {0}", userObj.UserName);
             }
+
             userObj = new User()
             {
                 UserName = "Vishal",

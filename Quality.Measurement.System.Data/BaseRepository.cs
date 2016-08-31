@@ -19,8 +19,9 @@ namespace Quality.Measurement.System.Data.Repository
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseRepository"/> class.
         /// </summary>
-        public BaseRepository()
+        protected BaseRepository()
         {
+            DatabaseFactory.ClearDatabaseProviderFactory();
             DatabaseFactory.SetDatabaseProviderFactory(new DatabaseProviderFactory());
             _databaseObj = DatabaseFactory.CreateDatabase(GeneralConstants.QualityMeasurementConnectionString);
         }
@@ -30,7 +31,7 @@ namespace Quality.Measurement.System.Data.Repository
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<DbDataReader> ExecuteReaderAsync()
+        protected async Task<DbDataReader> ExecuteReaderAsync()
         {
             //Execute Reader to get the result data
             DbDataReader dataReader = await _databaseCommandObj.ExecuteReaderAsync();

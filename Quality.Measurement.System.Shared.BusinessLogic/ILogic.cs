@@ -14,6 +14,7 @@ namespace Quality.Measurement.System.Shared.BusinessLogic
         Task<T> Get(long id);
 
 
+
         /// <summary>
         /// Posts the specified information object.
         /// </summary>

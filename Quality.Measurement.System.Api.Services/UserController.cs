@@ -8,8 +8,14 @@ namespace Quality.Measurement.System.Api.Services
 {
     public class UserController : ApiController
     {
+        /// <summary>
+        /// The _user logic
+        /// </summary>
         private readonly ILogic<User> _userLogic;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserController"/> class.
+        /// </summary>
         public UserController()
         {
             _userLogic = Factory.CreateInstance<ILogic<User>>();
@@ -18,12 +24,12 @@ namespace Quality.Measurement.System.Api.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="UserController"/> class.
         /// </summary>
-        /// <param name="userRepository">The user repository.</param>
-        public UserController(ILogic<User> userRepository)
+        /// <param name="userLogic">The user logic.</param>
+        public UserController(ILogic<User> userLogic)
         {
-            if (userRepository != null)
+            if (userLogic != null)
             {
-                _userLogic = userRepository;
+                _userLogic = userLogic;
             }
         }
 

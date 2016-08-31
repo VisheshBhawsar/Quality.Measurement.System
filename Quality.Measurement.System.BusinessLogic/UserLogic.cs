@@ -55,9 +55,9 @@ namespace Quality.Measurement.System.BusinessLogic
         /// <summary>
         /// Posts the specified user information.
         /// </summary>
-        /// <param name="userInfo">The user information.</param>
+        /// <param name="roleInfo">The user information.</param>
         /// <returns></returns>
-        public async Task<User> Post(User userInfo)
+        public async Task<User> Post(User roleInfo)
         {
             CommandParameter commandParameter = new CommandParameter(CommandConstants.InsertUserDetails,
                 CommandExecutionType.ExecuteReaderAsync)
@@ -67,17 +67,17 @@ namespace Quality.Measurement.System.BusinessLogic
                     new SqlParameter()
                     {
                         ParameterName = DatabaseFieldConstants.UserId,
-                        Value = userInfo.UserId
+                        Value = roleInfo.UserId
                     },
                     new SqlParameter()
                     {
                         ParameterName = DatabaseFieldConstants.UserName,
-                        Value = userInfo.UserName
+                        Value = roleInfo.UserName
                     },
                     new  SqlParameter()
                     {
                         ParameterName = DatabaseFieldConstants.FirstName,
-                        Value = userInfo.FirstName
+                        Value = roleInfo.FirstName
                     },
                     new SqlParameter()
                     {
