@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Quality.Measurement.System.Shared.Data.Repository;
-using Quality.Measurement.System.Shared.Helpers.Constants;
 using Quality.Measurement.System.Shared.Helpers.DataSetExtensions;
 using Quality.Measurement.System.Shared.Models;
 
@@ -69,13 +67,21 @@ namespace Quality.Measurement.System.Data.Repository
             // For multiple result set, we need to use dataReader.NextResult
             if (dataTable.IsTableDataPopulated())
             {
-                IList<Role> roleList = dataTable.AsEnumerable().Select(row =>
-                    new Role
-                    {
-                        RoleId = row.Field<int>(DatabaseFieldConstants.RoleId),
-                        RoleName = row.Field<string>(DatabaseFieldConstants.RoleName),
-                    }).ToList();
-                return roleList.First();
+                IList<Role> roleList = Mapper.MapToObjects.ConvertTo<Role>(dataTable);
+                if (roleList != null && roleList.Any())
+                    return roleList.First();
+                
+                #region Using Linq
+
+                //IList<Role> roleList = dataTable.AsEnumerable().Select(row =>
+                //    new Role
+                //    {
+                //        RoleId = row.Field<int>(DatabaseFieldConstants.RoleId),
+                //        RoleName = row.Field<string>(DatabaseFieldConstants.RoleName),
+                //    }).ToList();
+                //return roleList.First();
+                #endregion
+
             }
             throw new Exception();
         }

@@ -15,10 +15,7 @@ namespace Quality.Measurement.System.Shared.Models
         /// <value>
         /// The user identifier.
         /// </value>
-        /// 
-        /// 
-       
-        public long UserId;
+        public long UserId { get; set; }
         /// <summary>
         /// Gets or sets the name of the user.
         /// </summary>

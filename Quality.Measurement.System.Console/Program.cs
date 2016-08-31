@@ -7,7 +7,13 @@ namespace Quality.Measurement.System.ConsoleApp
 {
     static class Program
     {
+        /// <summary>
+        /// The client
+        /// </summary>
         private static readonly HttpClient Client = new HttpClient();
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
         static void Main()
         {
             Init();
@@ -15,6 +21,9 @@ namespace Quality.Measurement.System.ConsoleApp
             Environment.Exit(0);
         }
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         private static void Init()
         {
             Client.BaseAddress = new Uri("http://localhost:60048/");
@@ -22,10 +31,14 @@ namespace Quality.Measurement.System.ConsoleApp
             Client.Timeout = TimeSpan.FromMilliseconds(1000000);
         }
 
-        static  void RunAsync()
+        /// <summary>
+        /// Runs the asynchronous.
+        /// </summary>
+        static void RunAsync()
         {
-            RunRoleTest();
             RunUserTest();
+            RunRoleTest();
+           
         }
 
         /// <summary>
@@ -78,6 +91,14 @@ namespace Quality.Measurement.System.ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Gets the API response.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiController">The API controller.</param>
+        /// <param name="action">The action.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         private static T GetApiResponse<T>(string apiController, string action, long? id)
         {
             string requestUri = "api/" + apiController + "/" + action + "/" + id;
@@ -87,6 +108,13 @@ namespace Quality.Measurement.System.ConsoleApp
             return default(T);
         }
 
+        /// <summary>
+        /// Gets the API response.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiController">The API controller.</param>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         public static T GetApiResponse<T>(string apiController, string action)
         {
             string requestUri = "api/" + apiController + "/" + action;
@@ -96,6 +124,13 @@ namespace Quality.Measurement.System.ConsoleApp
             return default(T);
         }
 
+        /// <summary>
+        /// Gets the API response.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiController">The API controller.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static T GetApiResponse<T>(string apiController, long? id)
         {
             string requestUri = "api/" + apiController + "/" + id;
@@ -105,6 +140,12 @@ namespace Quality.Measurement.System.ConsoleApp
             return default(T);
         }
 
+        /// <summary>
+        /// Gets the API response.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiController">The API controller.</param>
+        /// <returns></returns>
         public static T GetApiResponse<T>(string apiController)
         {
             string requestUri = "api/" + apiController;
@@ -114,6 +155,13 @@ namespace Quality.Measurement.System.ConsoleApp
             return default(T);
         }
 
+        /// <summary>
+        /// Posts the API response.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiController">The API controller.</param>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
         public static T PostApiResponse<T>(string apiController, object data)
         {
             string requestUri = "api/" + apiController;
@@ -125,6 +173,13 @@ namespace Quality.Measurement.System.ConsoleApp
         }
 
 
+        /// <summary>
+        /// Deletes the API response.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiController">The API controller.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static T DeleteApiResponse<T>(string apiController, string id)
         {
             string requestUri = "api/" + apiController + "/" + id;
@@ -134,6 +189,14 @@ namespace Quality.Measurement.System.ConsoleApp
             return default(T);
         }
 
+        /// <summary>
+        /// Posts the API response.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiController">The API controller.</param>
+        /// <param name="action">The action.</param>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
         private static T PostApiResponse<T>(string apiController, string action, object data)
         {
             string requestUri = "api/" + apiController + "/" + action;
@@ -145,6 +208,14 @@ namespace Quality.Measurement.System.ConsoleApp
         }
 
 
+        /// <summary>
+        /// Deletes the API response.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiController">The API controller.</param>
+        /// <param name="action">The action.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static T DeleteApiResponse<T>(string apiController, string action, string id)
         {
             string requestUri = "api/" + apiController + "/" + action + "/" + id;

@@ -65,15 +65,22 @@ namespace Quality.Measurement.System.Data.Repository
             // For multiple result set, we need to use dataReader.NextResult
             if (dataTable.IsTableDataPopulated())
             {
-                IList<User> userList = dataTable.AsEnumerable().Select(row =>
-                    new User
-                    {
-                        UserId = row.Field<int>(DatabaseFieldConstants.UserId),
-                        UserName = row.Field<string>(DatabaseFieldConstants.UserName),
-                        FirstName = row.Field<string>(DatabaseFieldConstants.FirstName),
-                        LastName = row.Field<string>(DatabaseFieldConstants.LastName)
-                    }).ToList();
-                return userList.First();
+                IList<User> userList = Mapper.MapToObjects.ConvertTo<User>(dataTable);
+                if (userList != null && userList.Any())
+                    return userList.First();
+                
+                #region Using Linq
+                //IList<User> userList = dataTable.AsEnumerable().Select(row =>
+                //    new User
+                //    {
+                //        UserId = row.Field<int>(DatabaseFieldConstants.UserId),
+                //        UserName = row.Field<string>(DatabaseFieldConstants.UserName),
+                //        FirstName = row.Field<string>(DatabaseFieldConstants.FirstName),
+                //        LastName = row.Field<string>(DatabaseFieldConstants.LastName)
+                //    }).ToList();
+                //return userList.First();
+                #endregion
+
             }
             throw new Exception();
         }
