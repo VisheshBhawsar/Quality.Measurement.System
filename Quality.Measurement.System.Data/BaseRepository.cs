@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Quality.Measurement.System.Shared.Models;
 using Quality.Measurement.System.Shared.Helpers.Constants;
-
+using Quality.Measurement.System.Shared.Data.Repository;
 
 namespace Quality.Measurement.System.Data.Repository
 {
-    public class BaseRepository
+    public class BaseRepository : IDatabaseRepository
     {
-        private Database _databaseObj;
-        private DbCommand _databaseCommandObj;
-        private DbConnection _databaseConnectionObj;
+        internal Database _databaseObj;
+        internal DbCommand _databaseCommandObj;
+        internal DbConnection _databaseConnectionObj;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseRepository"/> class.
         /// </summary>
         protected BaseRepository()
+        {
+            DatabaseInitialization();
+        }
+
+        /// <summary>
+        /// Databases the initialization.
+        /// </summary>
+        public void DatabaseInitialization ()
         {
             DatabaseFactory.ClearDatabaseProviderFactory();
             DatabaseFactory.SetDatabaseProviderFactory(new DatabaseProviderFactory());
@@ -31,7 +39,7 @@ namespace Quality.Measurement.System.Data.Repository
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        protected async Task<DbDataReader> ExecuteReaderAsync()
+        public async Task<DbDataReader> ExecuteReaderAsync()
         {
             //Execute Reader to get the result data
             DbDataReader dataReader = await _databaseCommandObj.ExecuteReaderAsync();
@@ -60,13 +68,11 @@ namespace Quality.Measurement.System.Data.Repository
             return await _databaseCommandObj.ExecuteScalarAsync();
         }
 
-
-
         /// <summary>
         /// Initializes the database objects.
         /// </summary>
         /// <param name="commandParameter">The command parameter.</param>
-        internal void InitializeDbObjects(CommandParameter commandParameter)
+        public void InitializeDbObjects(CommandParameter commandParameter)
         {
             if (commandParameter.CommandName == null)
                 throw new ArgumentNullException(
@@ -98,37 +104,6 @@ namespace Quality.Measurement.System.Data.Repository
                     $"Failed to create DB object using connection string '{GeneralConstants.QualityMeasurementConnectionString}' in app/web.config.");
             }
         }
-
-
-        ///// <summary>
-        ///// Executes the reader asynchronous.
-        ///// </summary>
-        ///// <param name="commandName">Name of the command.</param>
-        ///// <returns></returns>
-        ///// <exception cref="Exception"></exception>
-        //public async Task<DbDataReader> ExecuteReaderAsync(string commandName)
-        //{
-        //    DatabaseConnectionObj = DatabaseObj.CreateConnection();
-        //    DatabaseConnectionObj.Open();
-        //    DatabaseCommandObj = DatabaseConnectionObj.CreateCommand();
-
-        //    //Set command type, in our sample we will use stored procedure
-        //    DatabaseCommandObj.CommandType = CommandType.StoredProcedure;
-        //    DatabaseCommandObj.CommandText = commandName;
-        //    DbParameter db = new SqlParameter();
-        //    db.ParameterName = "UserId";
-        //    db.DbType = DbType.Int64;
-        //    db.Value = DateTime.MaxValue;
-        //    DatabaseObj.AddInParameter(DatabaseCommandObj, db.ParameterName, db.DbType, db.Value);
-
-        //    //Execute Reader to get the result data
-        //    DbDataReader dataReader = await DatabaseCommandObj.ExecuteReaderAsync();
-        //    if (dataReader != null && dataReader.HasRows)
-        //    {
-        //        return dataReader;
-        //    }
-        //    throw new Exception();
-        //}
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

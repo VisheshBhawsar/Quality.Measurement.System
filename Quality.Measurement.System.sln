@@ -41,6 +41,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quality.Measurement.System.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quality.Measurement.System.Unit.Test", "Quality.Measurement.System.Unit.Test\Quality.Measurement.System.Unit.Test.csproj", "{8FA7ED14-9656-470C-A1C4-5D21B5F603AA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9212AC9-E67E-4881-ACE7-6DA30662898B}"
+	ProjectSection(SolutionItems) = preProject
+		Quality.Measurement.System.sln.vsspell = Quality.Measurement.System.sln.vsspell
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

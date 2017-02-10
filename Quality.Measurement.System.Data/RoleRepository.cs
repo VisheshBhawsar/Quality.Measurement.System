@@ -10,7 +10,7 @@ using Quality.Measurement.System.Shared.Models;
 
 namespace Quality.Measurement.System.Data.Repository
 {
-    public class RoleRepository : BaseRepository, IRepository<Role>
+    public class RoleRepository : BaseRepository
     {
 
         /// <summary>
@@ -22,6 +22,7 @@ namespace Quality.Measurement.System.Data.Repository
         public async Task<Role> Get(CommandParameter commandParameter)
         {
             InitializeDbObjects(commandParameter);
+
             using (DbDataReader dataReader = await ExecuteReaderAsync())
             {
                 if (dataReader.HasRows)

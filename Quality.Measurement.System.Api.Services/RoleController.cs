@@ -19,8 +19,8 @@ namespace Quality.Measurement.System.Api.Services
         public RoleController()
         {
             _roleLogic = Factory.CreateInstance<ILogic<Role>>();
-        }
 
+        }
 
 
         /// <summary>
